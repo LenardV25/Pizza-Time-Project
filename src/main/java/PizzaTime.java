@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PizzaTime {
 
@@ -70,7 +71,7 @@ public class PizzaTime {
         do {
             switch (city.toUpperCase().trim()) {
                 case "WINNIPEG":
-                System.out.println("Valid city entered");
+                //System.out.println("===> Valid city entered");
                     userCity = true;
                     break;
             
@@ -113,9 +114,79 @@ public class PizzaTime {
         firstChars.add("O");
         firstChars.add("Q");
         firstChars.add("U");
+        
 
         //A1A 1A1
         boolean goodPostal = false;
+
+        while (!goodPostal) {
+            //scanner.nextLine();
+            System.out.println("---Postal Code---");
+            String userPostal = scanner.nextLine();
+
+            char zero = userPostal.charAt(0);
+            boolean isCharZero = Character.isLetter(zero);
+
+            char one = userPostal.charAt(1);
+            boolean isDigtOne = Character.isDigit(one);
+
+            char two = userPostal.charAt(2);
+            boolean isCharTwo = Character.isLetter(two);
+
+            char space = userPostal.charAt(3);
+            boolean isSpace = Character.isSpace(space);
+
+            char three = userPostal.charAt(4);
+            boolean isDigitTwo = Character.isDigit(three);
+
+            char four = userPostal.charAt(5);
+            boolean isCharThree = Character.isLetter(four);
+
+            char five = userPostal.charAt(6);
+            boolean isDigitThree = Character.isDigit(five);
+
+
+
+            if (isCharZero = false) {
+                System.out.println("Invalid character. Try Again");
+                System.out.println("---Postal Code---");
+                userPostal = scanner.nextLine();
+            }
+            
+            
+            
+            if (isDigtOne = false) {
+                goodPostal = false;
+            }
+
+            
+            if (isCharTwo = false) {
+                goodPostal = false;
+            }
+
+            
+            if (isSpace = false) {
+                goodPostal = false;
+            }
+
+            
+            if (isDigitTwo = false) {
+                goodPostal = false;
+            }
+
+            
+            if (isCharThree = false ) {
+                goodPostal = false;
+            }
+
+            
+            if (isDigitThree = false) {
+                goodPostal = false;
+            }
+            //after all checks on postal pass
+            //goodPostal = true;
+            
+        }
 
         // while (!goodPostal) {
         //     System.out.println("Postal Code?");
@@ -201,8 +272,10 @@ public class PizzaTime {
                 case 1:
                     scanner.nextLine();
                     System.out.println("===> Small Pizza Chosen");
+                    double small = 10.00;
+
                     System.out.println("---Toppings---");
-                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
+                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
                     int tops1 = scanner.nextInt();
                     switch (tops1) {
                         case 1:
@@ -225,9 +298,14 @@ public class PizzaTime {
                         System.out.println("Pineapple chosen");
                         break;
 
+                        case 5:
+                        double cheese = 2.00;
+                        System.out.println("Cheesen chosen");
+                        break;
+
                         default:
                         System.out.println("Invalid Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
+                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
                         tops1 = scanner.nextInt();
                     }
                 break;
@@ -235,8 +313,10 @@ public class PizzaTime {
                 case 2:
                     scanner.nextLine();
                     System.out.println("===> Medium Pizza Chosen");
+                    double medium = 12.00;
+    
                     System.out.println("---Toppings---");
-                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
+                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n 5: Cheese");
                     int tops2 = scanner.nextInt();
                     switch (tops2) {
                         case 1:
@@ -259,9 +339,14 @@ public class PizzaTime {
                         System.out.println("Pineapple chosen");
                         break;
 
+                        case 5:
+                        double cheese = 2.00;
+                        System.out.println("Cheese chosen");
+                        break;
+
                         default:
                         System.out.println("Invalid Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
+                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
                         tops2 = scanner.nextInt();
                     }
                 break;
@@ -269,8 +354,10 @@ public class PizzaTime {
                 case 3:
                     scanner.nextLine();
                     System.out.println("===> Large Pizza Chosen");
+
+
                     System.out.println("---Toppings---");
-                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
+                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese ");
                     int tops3 = scanner.nextInt();
                     switch (tops3) {
                         case 1:
@@ -293,9 +380,13 @@ public class PizzaTime {
                         System.out.println("Pineapple chosen");
                         break;
 
+                        case 5:
+                        double cheese = 2.00;
+                        System.out.println("Cheese chosen");
+
                         default:
                         System.out.println("Invalid Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
+                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n 5: Cheese");
                         tops3 = scanner.nextInt();
                     }
                 break;
