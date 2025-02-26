@@ -6,11 +6,11 @@ public class PizzaTime {
 
 
     public static void main(String[] args){
-        System.out.println("Pizza Time!");
+        
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("---Pizza Time!---");
-        System.out.println("Street Name");
+        System.out.println("---Pizza Time---");
+        System.out.println("Welcome to our online pizza delivery system");
+        System.out.println("---Enter Your Street Name---");
         
         String street = scanner.nextLine();
         street.toUpperCase().trim();
@@ -53,7 +53,7 @@ public class PizzaTime {
         } while (!input);
 
     
-        System.out.println("Street Number?");
+        System.out.println("---Street Number---");
         int streetNum = scanner.nextInt();
         while (streetNum <= 0) {
             System.out.println("Invalid street number. Try again.");
@@ -61,7 +61,7 @@ public class PizzaTime {
         }
 
         scanner.nextLine();
-        System.out.println("Enter City");
+        System.out.println("---Your City---");
         String city = scanner.nextLine();
         city.toUpperCase().trim();
 
@@ -187,19 +187,20 @@ public class PizzaTime {
         //     }
     
         // }
-        System.out.println("Order Customization");
+        System.out.println("---Order Customization---");
         System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
         int pizChoice = scanner.nextInt();
 
         while (pizChoice <= 0) {
-            System.out.println("Invalid Choice. Try Again.");
+            System.out.println("Invalid Choice. Try Again");
             System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
             pizChoice = scanner.nextInt();
+        }
 
             switch (pizChoice) {
                 case 1:
-                    System.out.println("Small Pizza Chosen");
-
+                    scanner.nextLine();
+                    System.out.println("===> Small Pizza Chosen");
                     System.out.println("---Toppings---");
                     System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
                     int tops1 = scanner.nextInt();
@@ -230,9 +231,11 @@ public class PizzaTime {
                         tops1 = scanner.nextInt();
                     }
                 break;
+
                 case 2:
-                    System.out.println("Medium Pizza Chosen");
-                    System.out.println("Toppings");
+                    scanner.nextLine();
+                    System.out.println("===> Medium Pizza Chosen");
+                    System.out.println("---Toppings---");
                     System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
                     int tops2 = scanner.nextInt();
                     switch (tops2) {
@@ -261,13 +264,49 @@ public class PizzaTime {
                         System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
                         tops2 = scanner.nextInt();
                     }
-                    break;
+                break;
+
                 case 3:
-                    System.out.println("Large Pizza Chosen");
+                    scanner.nextLine();
+                    System.out.println("===> Large Pizza Chosen");
+                    System.out.println("---Toppings---");
+                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
+                    int tops3 = scanner.nextInt();
+                    switch (tops3) {
+                        case 1:
+                        double pepps = 3.50;
+                        System.out.println("Pepperoni chosen");
+                        break;
+            
+                        case 2: 
+                        double bacon = 4.00;
+                        System.out.println("Bacon chosen");
+                        break;
+
+                        case 3:
+                        double ham = 4.50;
+                        System.out.println("Ham chosen");
+                        break;
+
+                        case 4:
+                        double pines = 5.00;
+                        System.out.println("Pineapple chosen");
+                        break;
+
+                        default:
+                        System.out.println("Invalid Choice. Try Again");
+                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
+                        tops3 = scanner.nextInt();
+                    }
+                break;
+
                 default:
-                    break;
+                scanner.nextLine();
+                System.out.println("Invalid Choice. Try Again");
+                System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
+                pizChoice = scanner.nextInt();
+                System.out.println(pizChoice);
             }
-        }
 
         //while(pizChoice != "SMALL" || pizChoice != "MEDUIM" || pizChoice != "LARGE"){
            // System.out.println("Invalid choice.");
@@ -275,39 +314,9 @@ public class PizzaTime {
             //pizChoice.toUpperCase();
        // }
         
-        
-        System.out.println("Toppings");
-        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
-        int topChoice = scanner.nextInt();
-        switch (topChoice) {
-            case 1:
-            double pepps = 3.50;
-            System.out.println("Pepperoni chosen");
-            break;
-            
-            case 2:
-            double bacon = 4.00;
-            System.out.println("Bacon chosen");
-            break;
 
-            case 3:
-            double ham = 4.50;
-            System.out.println("Ham chosen");
-            break;
-
-            case 4:
-            double pines = 5.00;
-            System.out.println("Pineapple chosen");
-            break;
-
-            default:
-            System.out.println("Invalid Choice. Try Again");
-            System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples");
-            topChoice = scanner.nextInt();
-        }
-
-        System.out.println("---Order Summary---");
-        System.out.println("Your pizza is on the way");
+        //System.out.println("---Order Summary---");
+        //System.out.println("Your pizza is on the way");
 
     }
         
