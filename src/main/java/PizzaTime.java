@@ -17,7 +17,8 @@ public class PizzaTime {
         String street = scanner.nextLine();
         street.toUpperCase().trim();
         boolean input = false;
-
+        //change to asking number input for streets
+        //then can do delivery charge fee
         do {
             switch (street.toUpperCase().trim()) {
                 case "BURROWS":
@@ -128,32 +129,32 @@ public class PizzaTime {
 
             if (isCharOne == false) {
                 System.out.println("Invalid first character. Try Again");
-                System.out.println("---Postal Code!!!---");
+                System.out.println("---Postal Code---");
                 userPostal = scanner.nextLine();
             }
             else if (isDigtOne == false) {
                 System.out.println("Invalid first digit. Try Again");
-                System.out.println("---Postal Code!!!---");
+                System.out.println("---Postal Code---");
                 userPostal = scanner.nextLine();
             }
             else if (isCharTwo == false) {
                 System.out.println("Invalid second character. Try Again");
-                System.out.println("---Postal Code!!!---");
+                System.out.println("---Postal Code---");
                 userPostal = scanner.nextLine();
             }
             else if (isDigitTwo == false) {
                 System.out.println("Invalid second digit. Try Again");
-                System.out.println("---Postal Code!!!---");
+                System.out.println("---Postal Code---");
                 userPostal = scanner.nextLine();
             }
             else if (isCharThree == false) {
                 System.out.println("Invalid third character. Try Again");
-                System.out.println("---Postal Code!!!---");
+                System.out.println("---Postal Code---");
                 userPostal = scanner.nextLine();
             }
             else if (isDigitThree == false) {
                 System.out.println("Invalid third digit. Try Again");
-                System.out.println("---Postal Code!!!---");
+                System.out.println("---Postal Code---");
                 userPostal = scanner.nextLine();
             }
             else goodPostal = true;
@@ -176,6 +177,7 @@ public class PizzaTime {
                     scanner.nextLine();
                     System.out.println("===> Small Pizza Chosen");
                     double small = 10.00;
+                    double cost;
 
                     System.out.println("---Toppings---");
                     System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
@@ -192,20 +194,24 @@ public class PizzaTime {
                         double pepps = 3.50;
                         System.out.println("===> Pepperoni chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (small + pepps));
+                        cost = ((small + pepps) * 1.15);
+                        
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
             
                         case 2:
-                        double bacon = 4.00;
+                        double bacon = 5.00;
                         System.out.println("===> Bacon chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (small + bacon));
+                        cost = ((small + bacon) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost) );
                         System.out.println("Thank You for Ordering");
                         break;
 
                         case 3:
-                        double ham = 4.50;
+                        double ham = 5.00;
                         System.out.println("===> Ham chosen");
                         System.out.println("---Order Summary---");
                         System.out.println("Your order costs $" + (small + ham));
@@ -372,11 +378,6 @@ public class PizzaTime {
                 pizChoice = scanner.nextInt();
             }
 
-        //while(pizChoice != "SMALL" || pizChoice != "MEDUIM" || pizChoice != "LARGE"){
-           // System.out.println("Invalid choice.");
-            //pizChoice = scanner.nextLine();
-            //pizChoice.toUpperCase();
-       // }
 
     }
         
