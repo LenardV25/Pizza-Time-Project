@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
-public class Pizz
 public class PizzaTime {
     private static Scanner scanner = new Scanner(System.in);
 
@@ -15,7 +14,7 @@ public class PizzaTime {
         //menu system
         while (true) {
             System.out.println("---Main Menu---");
-            System.out.println("1: User Information \n2: Order Customization \n3: Order History \n0: Exit");
+            System.out.println("1: User Information \n2: Order Customization \n0: Exit");
             int userChoice = scanner.nextInt();
 
             if (userChoice == 0 ) {
@@ -31,15 +30,10 @@ public class PizzaTime {
                 orderCustom();
                 break;
 
-                case 3:
-                orderHist();
-                break;
 
                 default:
                 scanner.nextLine();
                 System.out.println("Invalid Choice. Try Again.");
-                //System.out.println("1: User Information \n2: Order Customization \n3: Order History");
-                //userChoice = scanner.nextInt();
                 break;
             }
         }
@@ -54,8 +48,6 @@ public class PizzaTime {
         String street = scanner.nextLine();
         street.toUpperCase().trim();
         boolean input = false;
-        //change to asking number input for streets
-        //then can do delivery charge fee
         do {
             switch (street.toUpperCase().trim()) {
                 case "BURROWS":
@@ -258,7 +250,9 @@ public class PizzaTime {
                         double ham = 5.00;
                         System.out.println("===> Ham chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (small + ham));
+                        cost = ((small + ham) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -266,7 +260,9 @@ public class PizzaTime {
                         double pines = 5.00;
                         System.out.println("===> Pineapple chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (small + pines));
+                        cost = ((small + pines) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -274,7 +270,9 @@ public class PizzaTime {
                         double cheese = 2.00;
                         System.out.println("===> Cheesen chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (small + cheese));
+                        cost = ((small + cheese) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -307,7 +305,9 @@ public class PizzaTime {
                         double pepps = 3.50;
                         System.out.println("===> Pepperoni chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (medium + pepps));
+                        cost= ((medium + pepps) *1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
             
@@ -315,7 +315,9 @@ public class PizzaTime {
                         double bacon = 4.00;
                         System.out.println("===> Bacon chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (medium + bacon));
+                        cost = ((medium + bacon) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -323,7 +325,9 @@ public class PizzaTime {
                         double ham = 4.50;
                         System.out.println("===> Ham chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (medium + ham));
+                        cost = ((medium + ham) *1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -331,7 +335,9 @@ public class PizzaTime {
                         double pines = 5.00;
                         System.out.println("===> Pineapple chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (medium + pines));
+                        cost = ((medium + pines) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -339,7 +345,9 @@ public class PizzaTime {
                         double cheese = 2.00;
                         System.out.println("===> Cheese chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (medium + cheese));
+                        cost = ((medium + cheese) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -372,7 +380,9 @@ public class PizzaTime {
                         double pepps = 3.50;
                         System.out.println("===> Pepperoni chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (large + pepps));
+                        cost = ((large + pepps) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
             
@@ -380,7 +390,9 @@ public class PizzaTime {
                         double bacon = 4.00;
                         System.out.println("===> Bacon chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (large + bacon));
+                        cost = ((large + bacon) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -388,7 +400,9 @@ public class PizzaTime {
                         double ham = 4.50;
                         System.out.println("===> Ham chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (large + ham));
+                        cost = ((large + ham) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -396,7 +410,9 @@ public class PizzaTime {
                         double pines = 5.00;
                         System.out.println("===> Pineapple chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (large + pines));
+                        cost = ((large + pines) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
                         break;
 
@@ -404,7 +420,9 @@ public class PizzaTime {
                         double cheese = 2.00;
                         System.out.println("===> Cheese chosen");
                         System.out.println("---Order Summary---");
-                        System.out.println("Your order costs $" + (large + cheese));
+                        cost = ((large + cheese) * 1.15);
+
+                        System.out.println("Your order costs $" + Math.round(cost));
                         System.out.println("Thank You for Ordering");
 
                         default:
