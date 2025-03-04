@@ -1,7 +1,37 @@
  import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+class Order{
+    private int orderId;
+    private String toppings;
+    private String pizzaType;
+    private double cost;
+    private LocalDateTime timestamp;
+    
+    public Order( int orderId, String pizzaType, String toppings, double cost, LocalDateTime timestamp) {
+        this.orderId = orderId;
+        this.toppings = toppings;
+        this.pizzaType = pizzaType;
+        this.cost = cost;
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+        "\n" + "orderId= " + orderId +
+        "\n Pizza Topping= " + toppings + 
+        "\n" + " pizzaType= " + pizzaType + 
+        "\n" + " timestamp= " + timestamp +
+        "}";
+
+        } 
+    }
 
 public class PizzaTime {
     private static Scanner scanner = new Scanner(System.in);
@@ -14,7 +44,7 @@ public class PizzaTime {
         //menu system
         while (true) {
             System.out.println("---Main Menu---");
-            System.out.println("1: User Information \n2: Order Customization \n0: Exit");
+            System.out.println("1: User Information \n2: Order Customization \n3: Order History \n0: Exit");
             int userChoice = scanner.nextInt();
 
             if (userChoice == 0 ) {
@@ -30,6 +60,9 @@ public class PizzaTime {
                 orderCustom();
                 break;
 
+                case 3:
+                orderHist();
+                break;
 
                 default:
                 scanner.nextLine();
@@ -201,237 +234,39 @@ public class PizzaTime {
         System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
         int pizChoice = scanner.nextInt();
 
-        while (pizChoice <= 0) {
+        while (pizChoice <= 0 || pizChoice > 3) {
             scanner.nextLine();
             System.out.println("Invalid Number Choice. Try Again");
             System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
             pizChoice = scanner.nextInt();
         }
+        String pizzaSize;
+        double baseCost=0;
 
             switch (pizChoice) {
                 case 1:
                     scanner.nextLine();
-                    System.out.println("===> Small Pizza Chosen");
-                    double small = 10.00;
-                    double cost;
+                    pizzaSize = "Small";
+                    baseCost = 10.00;
 
-                    System.out.println("---Toppings---");
-                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
-                    int tops1 = scanner.nextInt();
-                    while (tops1 <= 0 || tops1 > 5) {
-                        scanner.nextLine();
-                        System.out.println("Invalid Number Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
-                        tops1 = scanner.nextInt();
-                    }
-                     
-                    switch (tops1) {
-                        case 1:
-                        double pepps = 3.50;
-                        System.out.println("===> Pepperoni chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((small + pepps) * 1.15);
-                        
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-            
-                        case 2:
-                        double bacon = 5.00;
-                        System.out.println("===> Bacon chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((small + bacon) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost) );
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 3:
-                        double ham = 5.00;
-                        System.out.println("===> Ham chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((small + ham) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 4:
-                        double pines = 5.00;
-                        System.out.println("===> Pineapple chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((small + pines) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 5:
-                        double cheese = 2.00;
-                        System.out.println("===> Cheesen chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((small + cheese) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        default:
-                        scanner.nextLine();
-                        System.out.println("Invalid Number Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
-                        tops1 = scanner.nextInt();
-                    }
-                break;
+                    System.out.println("===> " + pizzaSize + " Pizza Chosen");
+                    break;
 
                 case 2:
                     scanner.nextLine();
-                    System.out.println("===> Medium Pizza Chosen");
-                    double medium = 12.00;
+                    pizzaSize = "Medium";
+                    baseCost = 12.00;
 
-                    System.out.println("---Toppings---");
-                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
-                    int tops2 = scanner.nextInt();
-
-                    while (tops2 <= 0 || tops2 > 5) {
-                        scanner.nextLine();
-                        System.out.println("Invalid Number Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
-                        tops2 = scanner.nextInt();
-                    }
-
-                    switch (tops2) {
-                        case 1:
-                        double pepps = 3.50;
-                        System.out.println("===> Pepperoni chosen");
-                        System.out.println("---Order Summary---");
-                        cost= ((medium + pepps) *1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-            
-                        case 2:
-                        double bacon = 4.00;
-                        System.out.println("===> Bacon chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((medium + bacon) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 3:
-                        double ham = 4.50;
-                        System.out.println("===> Ham chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((medium + ham) *1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 4:
-                        double pines = 5.00;
-                        System.out.println("===> Pineapple chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((medium + pines) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 5:
-                        double cheese = 2.00;
-                        System.out.println("===> Cheese chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((medium + cheese) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        default:
-                        scanner.nextLine();
-                        System.out.println("Invalid Number Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
-                        tops2 = scanner.nextInt();
-                    }
-                break;
+                    System.out.println("===> " + pizzaSize + " Pizza Chosen");
+                    break;
 
                 case 3:
                     scanner.nextLine();
-                    System.out.println("===> Large Pizza Chosen");
-                    double large = 14.00;
+                    pizzaSize = "Large";
+                    baseCost = 14.00;
 
-                    System.out.println("---Toppings---");
-                    System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese ");
-                    int tops3 = scanner.nextInt();
-
-                    while (tops3 <= 0 || tops3 > 5) {
-                        scanner.nextLine();
-                        System.out.println("Invalid Number Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
-                        tops3 = scanner.nextInt();
-                    }
-
-                    switch (tops3) {
-                        case 1:
-                        double pepps = 3.50;
-                        System.out.println("===> Pepperoni chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((large + pepps) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-            
-                        case 2: 
-                        double bacon = 4.00;
-                        System.out.println("===> Bacon chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((large + bacon) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 3:
-                        double ham = 4.50;
-                        System.out.println("===> Ham chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((large + ham) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 4:
-                        double pines = 5.00;
-                        System.out.println("===> Pineapple chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((large + pines) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-                        break;
-
-                        case 5:
-                        double cheese = 2.00;
-                        System.out.println("===> Cheese chosen");
-                        System.out.println("---Order Summary---");
-                        cost = ((large + cheese) * 1.15);
-
-                        System.out.println("Your order costs $" + Math.round(cost));
-                        System.out.println("Thank You for Ordering");
-
-                        default:
-                        scanner.nextLine();
-                        System.out.println("Invalid Number Choice. Try Again");
-                        System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
-                        tops3 = scanner.nextInt();
-                    }
-                break;
+                    System.out.println("===> " + pizzaSize + " Pizza Chosen");
+                    break;
 
                 default:
                 scanner.nextLine();
@@ -439,10 +274,88 @@ public class PizzaTime {
                 System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
                 pizChoice = scanner.nextInt();
             }
+
+            System.out.println("---Toppings---");
+            System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
+            int tops = scanner.nextInt();
+            while (tops <= 0 || tops > 5) {
+                scanner.nextLine();
+                System.out.println("Invalid Number Choice. Try Again");
+                System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
+                tops = scanner.nextInt();
+
+            }
+
+            String toppings = "";
+            double toppingCost= 0;
+
+            switch (tops) {
+                case 1:
+                toppings = "Pepperoni";
+                toppingCost = 3.50;
+                break;
+                
+                case 2:
+                toppings = "Bacon";
+                toppingCost = 4.00;
+                break;
+
+                case 3:
+                toppings = "Ham";
+                toppingCost = 4.50;
+                break;
+
+                case 4:
+                toppings = "Pineapple";
+                toppingCost = 5.00;
+                break;
+
+                case 5:
+                toppings = "Cheese";
+                toppingCost = 2.00;
+                break;
+
+                default:
+                break;
+            }
+
+            System.out.println("===> " + toppings + " chosen");
+
+            //cost
+            double totalCost = (baseCost + toppingCost) *1.15; //% 15 tax
+
+            System.out.println("---Order Summary---");
+            System.out.println("Your order costs $" + Math.round(totalCost));
+            System.out.println("Thank You for Ordering");
+
+            //create a new order
+
+            
     }        
     private static void orderHist() {
+        //list to store orders
+        List<Order> orderHistory = new ArrayList<>(); 
+        
+        //call customization method
+       
 
+        //display updated order history
+        System.out.println("\nUpdated Order History: ");
+        
+        //orders with timestamps
+        //orderHistory.add(new Order(1, "Name", "PizzaType", LocalDateTime.now()));
+        //orderHistory.add (new Order(2, "Lenard", "Pepperoni", LocalDateTime.now().minusHours(1)));
+        //orderHistory.add(new Order(3, "Villazor", "Veggie", LocalDateTime.now().minusMinutes(30)));
+
+        //display order history
+        for (Order order : orderHistory) {
+            System.out.println(order);
+        }
     }
 
-    }
+}
+
+
+        
+    
         
