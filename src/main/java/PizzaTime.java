@@ -6,31 +6,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-class Order{
-    private int orderId;
-    private String toppings;
-    private String pizzaType;
-    private double cost;
-    private LocalDateTime timestamp;
+class PizzaOrderSystem{
+    private static List<String> orderHistory = new ArrayList<>();
     
-    public Order( int orderId, String pizzaType, String toppings, double cost, LocalDateTime timestamp) {
-        this.orderId = orderId;
-        this.toppings = toppings;
-        this.pizzaType = pizzaType;
-        this.cost = cost;
-        this.timestamp = timestamp;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-        "\n" + "orderId= " + orderId +
-        "\n Pizza Topping= " + toppings + 
-        "\n" + " pizzaType= " + pizzaType + 
-        "\n" + " timestamp= " + timestamp +
-        "}";
-
-        } 
     }
 
 public class PizzaTime {
@@ -229,7 +207,7 @@ public class PizzaTime {
         //pizza store is based in kildonan place
         //R2C 4H0
     
-    private static void orderCustom(){
+    private static orderCustom(String order){
         System.out.println("---Order Customization---");
         System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
         int pizChoice = scanner.nextInt();
@@ -240,13 +218,13 @@ public class PizzaTime {
             System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
             pizChoice = scanner.nextInt();
         }
-        String pizzaSize;
+        String pizzaSize = "";
         double baseCost=0;
 
             switch (pizChoice) {
                 case 1:
                     scanner.nextLine();
-                    pizzaSize = "Small";
+                    pizzaSize += "Small";
                     baseCost = 10.00;
 
                     System.out.println("===> " + pizzaSize + " Pizza Chosen");
@@ -254,7 +232,7 @@ public class PizzaTime {
 
                 case 2:
                     scanner.nextLine();
-                    pizzaSize = "Medium";
+                    pizzaSize += "Medium";
                     baseCost = 12.00;
 
                     System.out.println("===> " + pizzaSize + " Pizza Chosen");
@@ -262,7 +240,7 @@ public class PizzaTime {
 
                 case 3:
                     scanner.nextLine();
-                    pizzaSize = "Large";
+                    pizzaSize += "Large";
                     baseCost = 14.00;
 
                     System.out.println("===> " + pizzaSize + " Pizza Chosen");
@@ -291,8 +269,13 @@ public class PizzaTime {
 
             switch (tops) {
                 case 1:
-                toppings = "Pepperoni";
+                toppings += "Pepperoni";
                 toppingCost = 3.50;
+
+                //create string rep of order and add to order history
+                order = "size: " + pizzaSize + ", Topping: " + toppings;
+                return order;
+                
                 break;
                 
                 case 2:
@@ -318,27 +301,24 @@ public class PizzaTime {
                 default:
                 break;
             }
-
-            System.out.println("===> " + toppings + " chosen");
+            if (toppings.equals("")) {
+                return "No Toppings Chosen";
+            } else
+            return ("===> " + toppings + " chosen");
 
             //cost
             double totalCost = (baseCost + toppingCost) *1.15; //% 15 tax
 
-            System.out.println("---Order Summary---");
-            System.out.println("Your order costs $" + Math.round(totalCost));
-            System.out.println("Thank You for Ordering");
+            return("---Order Summary---");
+            return("Your order costs $" + Math.round(totalCost));
+            return("Thank You for Ordering");
 
-            //create a new order
-
+            
             
     }        
     private static void orderHist() {
         //list to store orders
-        List<Order> orderHistory = new ArrayList<>(); 
-        
-        //call customization method
        
-
         //display updated order history
         System.out.println("\nUpdated Order History: ");
         
@@ -348,9 +328,7 @@ public class PizzaTime {
         //orderHistory.add(new Order(3, "Villazor", "Veggie", LocalDateTime.now().minusMinutes(30)));
 
         //display order history
-        for (Order order : orderHistory) {
-            System.out.println(order);
-        }
+        
     }
 
 }
