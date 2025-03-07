@@ -3,58 +3,70 @@ import java.util.List;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 class PizzaOrderSystem{
-    private static List<String> orderHistory = new ArrayList<>();
+    private static List<String> orderHistory = new ArrayList<String>();
     
+    public static void addOrder(String order) {
+        orderHistory.add(LocalDateTime.now() + ": " + order);
+    }
+    public static List<String> getOrderHistory(){
+        return orderHistory;
     }
 
+    }
+
+
 public class PizzaTime {
-    private static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args){
+    Scanner scanner = new Scanner(System.in);
     
-        System.out.println("---Pizza Time---");
-        System.out.println("Welcome to our online pizza delivery system");
+    System.out.println("---Pizza Time---");
+    System.out.println("Welcome to our online pizza delivery system");
+    boolean exit = false;
+    while (!exit) {
 
-        //menu system
-        while (true) {
-            System.out.println("---Main Menu---");
-            System.out.println("1: User Information \n2: Order Customization \n3: Order History \n0: Exit");
-            int userChoice = scanner.nextInt();
+        System.out.println("---Main Menu---");
+        System.out.println("1: User Information \n2: Order Customization \n3: Order History \n4: Exit");
+        int userChoice = scanner.nextInt();
 
-            if (userChoice == 0 ) {
-                break;
-            }
+        while (userChoice <= 0 ) {
+            System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+            userChoice = scanner.nextInt();
+        }
 
             switch (userChoice) {
                 case 1:
+                System.out.println("User Info");
                 userInfo();
                 break;
             
                 case 2:
+                System.out.println("Order Pizza");
                 orderCustom();
                 break;
 
                 case 3:
+                System.out.println("View Order History");
                 orderHist();
                 break;
 
+                case 4:
+                System.out.println("Thank you for visiting, Goodbye.");
+                exit = true;
+                break;
+
                 default:
-                scanner.nextLine();
-                System.out.println("Invalid Choice. Try Again.");
+                System.out.println("Invalid choice. Please enter a number between 1 and 4.");
+                userChoice = scanner.nextInt();
                 break;
             }
-        }
-        System.out.println("Thanks You for Vistiing! Goodbye!");
-        scanner.close();
-        
+    }   
+    scanner.close();
     }
 
     private static void userInfo() {
-        scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
         System.out.println("---Enter Your Street Name---");
         String street = scanner.nextLine();
         street.toUpperCase().trim();
@@ -203,11 +215,10 @@ public class PizzaTime {
 
 
     }
-        //System.out.println("We are currently based at Kildonan Place");
-        //pizza store is based in kildonan place
-        //R2C 4H0
     
-    private static orderCustom(String order){
+    private static void orderCustom(){
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("---Order Customization---");
         System.out.println("1: Small (10 inches) \n2: Medium (14 inches) \n3: Large Pizza (16 inches)");
         int pizChoice = scanner.nextInt();
@@ -219,7 +230,7 @@ public class PizzaTime {
             pizChoice = scanner.nextInt();
         }
         String pizzaSize = "";
-        double baseCost=0;
+        double baseCost = 0;
 
             switch (pizChoice) {
                 case 1:
@@ -266,71 +277,80 @@ public class PizzaTime {
 
             String toppings = "";
             double toppingCost= 0;
+            String order = "";
 
             switch (tops) {
                 case 1:
                 toppings += "Pepperoni";
                 toppingCost = 3.50;
 
-                //create string rep of order and add to order history
-                order = "size: " + pizzaSize + ", Topping: " + toppings;
-                return order;
+                order = "Size: " + pizzaSize + ", Topping: " + toppings;
+                PizzaOrderSystem.addOrder(order);
                 
                 break;
                 
                 case 2:
                 toppings = "Bacon";
                 toppingCost = 4.00;
+
+                order = "Size: " + pizzaSize + ", Topping: " + toppings;
+                PizzaOrderSystem.addOrder(order);
+
                 break;
 
                 case 3:
                 toppings = "Ham";
                 toppingCost = 4.50;
+
+                order = "Size: " + pizzaSize + ", Topping: " + toppings;
+                PizzaOrderSystem.addOrder(order);
+
                 break;
 
                 case 4:
                 toppings = "Pineapple";
                 toppingCost = 5.00;
+
+                order = "Size: " + pizzaSize + ", Topping: " + toppings;
+                PizzaOrderSystem.addOrder(order);
+
                 break;
 
                 case 5:
                 toppings = "Cheese";
                 toppingCost = 2.00;
+
+                order = "Size: " + pizzaSize + ", Topping: " + toppings;
+                PizzaOrderSystem.addOrder(order);
+
                 break;
 
                 default:
                 break;
             }
-            if (toppings.equals("")) {
-                return "No Toppings Chosen";
-            } else
-            return ("===> " + toppings + " chosen");
-
             //cost
             double totalCost = (baseCost + toppingCost) *1.15; //% 15 tax
 
-            return("---Order Summary---");
-            return("Your order costs $" + Math.round(totalCost));
-            return("Thank You for Ordering");
+            System.out.println("---Order Summary---");
+            System.out.println("Your order costs $" + Math.round(totalCost));
+            System.out.println("Thank You for Ordering");
 
             
             
     }        
     private static void orderHist() {
-        //list to store orders
-       
-        //display updated order history
-        System.out.println("\nUpdated Order History: ");
-        
-        //orders with timestamps
-        //orderHistory.add(new Order(1, "Name", "PizzaType", LocalDateTime.now()));
-        //orderHistory.add (new Order(2, "Lenard", "Pepperoni", LocalDateTime.now().minusHours(1)));
-        //orderHistory.add(new Order(3, "Villazor", "Veggie", LocalDateTime.now().minusMinutes(30)));
+    List<String> history = PizzaOrderSystem.getOrderHistory();
 
-        //display order history
-        
+    System.out.println("---Order History---");
+    if (history.isEmpty()) {
+        System.out.println("No orders have been placed yet.");
+    } else {
+        for (int i = 0; i < history.size(); i++) {
+            System.out.println((i+1) + ". " + history.get(i));
+        }
     }
-
+    System.out.println("------"); 
+    }
 }
 
 
