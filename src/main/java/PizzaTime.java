@@ -265,12 +265,12 @@ public class PizzaTime {
             }
 
             System.out.println("---Toppings---");
-            System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
+            System.out.println("1: Pepperoni \n2: BBQ Chicken \n3: Buffalo \n4: Hawaiian \n5: Cheese");
             int tops = scanner.nextInt();
             while (tops <= 0 || tops > 5) {
                 scanner.nextLine();
                 System.out.println("Invalid Number Choice. Try Again");
-                System.out.println("1: Pepperoni \n2: Bacon \n3: Ham \n4: Pineapples \n5: Cheese");
+                System.out.println("1: Pepperoni \n2: BBQ Chicken \n3: Buffalo \n4: Hawaiian \n5: Cheese");
                 tops = scanner.nextInt();
 
             }
@@ -290,7 +290,7 @@ public class PizzaTime {
                 break;
                 
                 case 2:
-                toppings = "Bacon";
+                toppings = "BBQ Chicken";
                 toppingCost = 4.00;
 
                 order = "Size: " + pizzaSize + ", Topping: " + toppings;
@@ -299,7 +299,7 @@ public class PizzaTime {
                 break;
 
                 case 3:
-                toppings = "Ham";
+                toppings = "Buffalo";
                 toppingCost = 4.50;
 
                 order = "Size: " + pizzaSize + ", Topping: " + toppings;
@@ -308,7 +308,7 @@ public class PizzaTime {
                 break;
 
                 case 4:
-                toppings = "Pineapple";
+                toppings = "Hawaiian";
                 toppingCost = 5.00;
 
                 order = "Size: " + pizzaSize + ", Topping: " + toppings;
